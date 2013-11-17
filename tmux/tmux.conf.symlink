@@ -1,0 +1,22 @@
+set -g prefix C-a
+set -g default-terminal "xterm"
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+set -g mouse-select-pane on
+set -g mode-mouse on
+
+setw -g mode-keys vi
+
+# rebind the default split key bindings
+unbind %
+bind | split-window -h
+bind - split-window -v
+
+# resize panes
+bind < resize-pane -L 1
+bind > resize-pane -R 1
+
+bind-key -n C-k select-pane -U
+bind-key -n C-j select-pane -D
+bind-key -n C-h select-pane -L
+bind-key -n C-l select-pane -R
