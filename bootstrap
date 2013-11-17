@@ -3,4 +3,4 @@
 # bootstrap my dotfiles
 
 cd ${HOME} && git clone git@github.com:robbernabe/dotfiles.git
-cd dotfiles && bash install
+cd dotfiles && . ./install
