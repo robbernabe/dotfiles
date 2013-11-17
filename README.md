@@ -8,7 +8,7 @@ My personal dotfiles, heavily inspired by Zach Holman's
 can also be symlinked (for example the contents of `.vim/` which contains all
 my vim plugins). This is accomplished by naming the directory `[whatever].dir`.
 
-installation
+Installation
 ------------
 
-curl https://raw.github.com/robbernabe/dotfiles/master/bootstrap | bash
+`curl https://raw.github.com/robbernabe/dotfiles/master/bootstrap | bash`
