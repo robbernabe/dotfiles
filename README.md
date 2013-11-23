@@ -10,8 +10,7 @@ Entire directories can also be symlinked (for example the contents of `.vim/`
 which contains all my vim plugins). This is accomplished by naming the
 directory `[whatever].dir`.
 
-Installation
-------------
+## Installation
 
 The purpose of this project was to be able to easily install my dotfiles on any
 machine I am working on, so I created a bootstrap script in order to simplify
@@ -21,7 +20,8 @@ things a bit. Just run:
 
 ...and you should be good to go assuming you have git installed.
 
-# Updating
+## Updating
+
 There are several git submodules included in this configuration. On a new
 installation these submodules need to be initialized and updated.
 
