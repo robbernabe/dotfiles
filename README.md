@@ -20,3 +20,17 @@ things a bit. Just run:
 `curl https://raw.github.com/robbernabe/dotfiles/master/bootstrap | bash`
 
 ...and you should be good to go assuming you have git installed.
+
+# Updating
+There are several git submodules included in this configuration. On a new
+installation these submodules need to be initialized and updated.
+
+    $ cd ~/.dotfiles
+    $ git submodule init
+    $ git submodule update
+
+It is also possible to use `git pull` to update the submodules.
+
+    $ cd ~/.dotfiles
+    $ git submodule foreach git pull origin master
+
