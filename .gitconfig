@@ -1,0 +1,14 @@
+[user]
+	name = Rob Bernabe
+	email = rob@rob.pe
+[core]
+	excludesfile = /Users/rbernabe/.gitignore_global
+	editor = /usr/bin/vim
+	autocrlf = input
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[color]
+    ui = true
+[push]
+	default = matching
