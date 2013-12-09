@@ -161,6 +161,7 @@ set shiftwidth=4
 set expandtab
 
 " Showing line numbers and length
+set number
 set relativenumber  " show relative line numbers
 " set tw=80   " width of document (used by gd)
 " set wrap    " automatically wrap on load
