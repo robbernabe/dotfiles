@@ -34,3 +34,11 @@ It is also possible to use `git pull` to update the submodules.
     $ cd ~/dotfiles
     $ git submodule foreach git pull origin master
 
+## Adding new submodules
+
+You'll need to be in the root of your repo. For example, here's how I added the
+jedi-vim bundle to my vim configuration:
+
+    git submodule add git@github.com:davidhalter/jedi-vim.git vim/vim.dir/bundle/jedi-vim
+
+Don't for to commit your changes!
