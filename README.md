@@ -26,8 +26,7 @@ There are several git submodules included in this configuration. On a new
 installation these submodules need to be initialized and updated.
 
     $ cd ~/dotfiles
-    $ git submodule init
-    $ git submodule update
+    $ git submodule update --init --recursive
 
 It is also possible to use `git pull` to update the submodules.
 
