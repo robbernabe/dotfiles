@@ -339,15 +339,12 @@ nnoremap <leader>m :call ToggleNERDTreeAndTagbar()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jedi
-"
-" sudo pip install jedi
-" cd ~/.vim/bundle && git clone https://github.com/davidhalter/jedi-vim.git
 
-let g:jedi#pydoc = "K"
+let g:jedi#documentation_command = "K"
 let g:jedi#auto_initialization = 1
-let g:jedi#goto_command = "<leader>g"
-let g:jedi#get_definition_command = "<leader>d"
-let g:jedi#related_names_command = "<leader>N"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#usages_command= "<leader>N"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
