@@ -137,7 +137,7 @@ if has("gui_running")
     " set fullscreen
 
     " Let's not go fullscreen for a while
-    set lines=55 
+    set lines=55
     set columns=120
 
     " remove toolbar
