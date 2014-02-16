@@ -293,8 +293,6 @@ set laststatus=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-mode
 "
-" cd ~/.vim/bundle
-" git clone https://github.com/klen/python-mode
 " map <Leader>g :call RopeGotoDefinition()<CR>
 " let ropevim_enable_shortcuts = 1
 " let g:pymode_rope_extended_complete = 1
@@ -327,8 +325,7 @@ set nofoldenable
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 "
-" cd ~/.vim/bundle && git clone https://github.com/majutsushi/tagbar.git
-" Then install requirements:
+" To install requirements:
 " brew install ctags-exuberant
 
 " Map our Tagbar toggle
@@ -375,7 +372,6 @@ autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive
 "
-" cd ~/.vim/bundle/ && git clone https://github.com/tpope/vim-fugitive.git
 " To make current branch appear in powerline, run:
 " :PowerlineClearCache
 " then restart vim.
@@ -387,8 +383,6 @@ autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
-"
-" cd ~/.vim/bundle/ && git clone git://github.com/airblade/vim-gitgutter.git
 
 " Fix gutter coloring issue
 highlight clear SignColumn
