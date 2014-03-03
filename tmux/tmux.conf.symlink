@@ -1,3 +1,6 @@
+# Set default-path
+set-option -g default-path $HOME
+
 # Change default prefix to match screen
 set -g prefix C-a
 unbind C-b
