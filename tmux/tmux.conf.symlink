@@ -1,5 +1,5 @@
 # Set default-path
-set-option -g default-path $HOME
+bind c neww -c $PWD
 
 # Change default prefix to match screen
 set -g prefix C-a
