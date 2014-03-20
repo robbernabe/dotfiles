@@ -125,7 +125,8 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Mustang via https://github.com/croaker/mustang-vim
-colorscheme mustang
+" colorscheme mustang
+colorscheme badwolf
 set t_Co=256
 
 " Setup our default font
