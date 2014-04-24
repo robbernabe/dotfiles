@@ -22,9 +22,6 @@
 [submodule "vim/vim.dir/bundle/python-mode.vim"]
 	path = vim/vim.dir/bundle/python-mode.vim
 	url = git@github.com:klen/python-mode.git
-[submodule "vim/vim.dir/bundle/supertab.vim"]
-	path = vim/vim.dir/bundle/supertab.vim
-	url = git@github.com:ervandew/supertab.git
 [submodule "vim/vim.dir/bundle/surround.vim"]
 	path = vim/vim.dir/bundle/surround.vim
 	url = git@github.com:tpope/vim-surround.git

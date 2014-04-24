@@ -382,7 +382,7 @@ autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 "
 " cd ~/.vim && git clone https://github.com/ervandew/supertab.git
 
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+" let g:SuperTabNoCompleteAfter = ['^', '\s', ',', '(', ')', '[', ']', '{', '}', '<', '>', '''', '"']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
@@ -402,4 +402,4 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
