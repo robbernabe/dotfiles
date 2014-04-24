@@ -126,7 +126,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Mustang via https://github.com/croaker/mustang-vim
 " colorscheme mustang
-colorscheme badwolf
+colorscheme mustang
 set t_Co=256
 
 " Setup our default font
@@ -382,6 +382,8 @@ autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 "
 " cd ~/.vim && git clone https://github.com/ervandew/supertab.git
 
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
 
@@ -399,3 +401,5 @@ nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+
+set omnifunc=syntaxcomplete#Complete
