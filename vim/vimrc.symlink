@@ -91,8 +91,8 @@ set mouse=a
 set gdefault
 
 " Fix vim's regex so I can use pcre
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 
 " Allow vim clipboard to pass thru to OS X
 " set clipboard=unnamed
@@ -377,6 +377,19 @@ autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 " :PowerlineClearCache
 " then restart vim.
 
+map <leader>S :Gstatus<CR>
+
+" Write COMMIT_EDITMSG and push to current branch
+function! PushToCurrentBranch()
+  exe ":Gwrite"
+  let branch = fugitive#statusline()
+  let branch = substitute(branch, '\c\v\[?GIT\(([a-z0-9\-_\./:]+)\)\]?', $BRANCH.' \1', 'g')
+  exe ":Git push origin" . branch
+endfunction
+
+" Map gwp keys to call the function
+nnoremap gwp :call PushToCurrentBranch()<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SuperTab
 "
@@ -402,4 +415,3 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
-" set omnifunc=syntaxcomplete#Complete
