@@ -177,8 +177,8 @@ set cursorline
 hi CursorLine term=bold cterm=bold guibg=Grey20
 
 " Show 80 char column
-set colorcolumn=80
-highlight ColorColumn ctermbg=233
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=233
 
 " Highlight searches
 set incsearch
@@ -241,7 +241,7 @@ noremap <Leader>E :qa!<CR>   " Quit all windows
 autocmd! bufwritepost .vimrc source %
 
 " Associate proper file extensions with proper filetypes
-autocmd! BufRead,BufNewFile *.pp set filetype=ruby
+autocmd! BufRead,BufNewFile *.pp set filetype=puppet
 
 " This beauty remembers where you were the last time you edited the file, and
 " returns to the same position.
