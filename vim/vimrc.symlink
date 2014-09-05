@@ -152,6 +152,10 @@ if has("gui_running")
     map <D-k> gt
 endif
 
+if has("gui_macvim")
+    macmenu Tools.Make key=<nop>
+endif
+
 map <leader>j gT
 map <leader>k gt
 
@@ -242,6 +246,7 @@ autocmd! bufwritepost .vimrc source %
 
 " Associate proper file extensions with proper filetypes
 autocmd! BufRead,BufNewFile *.pp set filetype=puppet
+au FileType puppet setlocal tabstop=8 expandtab shiftwidth=2 softtabstop=2
 
 " This beauty remembers where you were the last time you edited the file, and
 " returns to the same position.
@@ -408,10 +413,9 @@ set completeopt-=preview
 " for some reason the above isn't working when in .vimrc, but works manually
 autocmd FileType * setlocal completeopt-=preview
 
+" Use vim motion keys to navigate tmux panes
 let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-
