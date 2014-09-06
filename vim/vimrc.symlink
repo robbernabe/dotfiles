@@ -419,3 +419,9 @@ nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+
+set tags=./tags;
+" remap leader-b to "Jump to Definition" like PyCharm
+nnoremap <silent> <leader>b <c-]>
+ " remap leader-[ to "Back to Previous Definition" like PyCharm
+nnoremap <silent> <leader>[ <c-t>
