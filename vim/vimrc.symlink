@@ -409,7 +409,7 @@ nnoremap gwp :call PushToCurrentBranch()<CR>
 highlight clear SignColumn
 
 " remove that annoying scratch window
-set completeopt-=preview
+set completeopt+=preview
 " for some reason the above isn't working when in .vimrc, but works manually
 autocmd FileType * setlocal completeopt-=preview
 
