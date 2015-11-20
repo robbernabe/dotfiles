@@ -4,6 +4,3 @@
 [submodule "vim/vim.dir/bundle/jedi.vim"]
 	path = vim/vim.dir/bundle/jedi.vim
 	url = git@github.com:davidhalter/jedi-vim.git
-[submodule "vim-nerdtree-tabs"]
-	path = vim-nerdtree-tabs
-	url = git@github.com:jistr/vim-nerdtree-tabs.git
