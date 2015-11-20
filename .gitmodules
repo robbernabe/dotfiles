@@ -1,6 +1,0 @@
-[submodule "vim/vim.dir/bundle/numbers.vim"]
-	path = vim/vim.dir/bundle/numbers.vim
-	url = git@github.com:myusuf3/numbers.vim.git
-[submodule "vim/vim.dir/bundle/jedi.vim"]
-	path = vim/vim.dir/bundle/jedi.vim
-	url = git@github.com:davidhalter/jedi-vim.git
