@@ -1,64 +1,64 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Vundle Plugins
+Plugin 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'rodjek/vim-puppet'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'Townk/vim-autoclose'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'rking/ag.vim.git'
+
+" Vundle colorschemes
+Plugin 'sjl/badwolf'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'gilgigilgil/anderson.vim.git'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'croaker/mustang-vim.git'
+Plugin 'vim-scripts/xoria256.vim.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
-
-" Rename current file
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-
-" Better navigating through omnicomplete option list
-" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<C-N>"
-        elseif a:action == 'k'
-            return "\<C-P>"
-        endif
-    endif
-    return a:action
-endfunction
-
-" Toggle both NERDTree and Tagbar
-function! ToggleNERDTreeAndTagbar()
-    let w:jumpbacktohere = 1
-
-    " Detect which plugins are open
-    if exists('t:NERDTreeBufName')
-        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
-    else
-        let nerdtree_open = 0
-    endif
-    let tagbar_open = bufwinnr('__Tagbar__') != -1
-
-    " Perform the appropriate action
-    if nerdtree_open && tagbar_open
-        NERDTreeClose
-        TagbarClose
-    elseif nerdtree_open
-        TagbarOpen
-    elseif tagbar_open
-        NERDTree
-    else
-        NERDTree
-        TagbarOpen
-    endif
-
-    " Jump back to the original window
-    for window in range(1, winnr('$'))
-        execute window . 'wincmd w'
-        if exists('w:jumpbacktohere')
-            unlet w:jumpbacktohere
-            break
-        endif
-    endfor
-endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
@@ -72,60 +72,67 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC EDITING CONFIGURATION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader=","
+set cmdheight=1
 
-" automatically set paste mode when pasting into vim
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-" End Functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set nocompatible
+set switchbuf=useopen
+set numberwidth=1
 set encoding=utf-8
 set mouse=a
+
+" Convert tabs to spaces
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" Don't wrap text
+set nowrap
+
+" Filetyle specific spacing
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+
+" Quick quit command
+noremap <Leader>e :quit<CR>  " Quit current window
+noremap <Leader>E :qa!<CR>   " Quit all windows
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
 
 " Apply substitutions globally on lines
 set gdefault
 
-" Fix vim's regex so I can use pcre
-" nnoremap / /\v
-" vnoremap / /\v
-
-" Allow vim clipboard to pass thru to OS X
-" set clipboard=unnamed
-
 " make backspace behave like normal again
 set bs=2
 
-" Pathogen
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+" hybrid line number mode
+set relativenumber
+set number
 
-" Enable syntax highlighting
-filetype off
+" display incomplete commands
+set showcmd
+
+" Enable highlighting for syntax
 syntax on
-syntax enable
+
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
 
-" change the mapleader from \ to ,
-let mapleader=","
+" zsh-style completion
+set wildmode=full
 
-" automatically set paste mode when pasting into vim
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+" make tab completion for files/buffers act like bash
+set wildmenu
+
+" copy to system clipboard
+map <leader>c "+y
 
 " show problematic whitespace
 set list
@@ -136,238 +143,154 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
-" Mustang via https://github.com/croaker/mustang-vim
-colorscheme mustang
-set t_Co=256
-" set background=dark
-" colorscheme solarized
-
-" Setup our default font
-" set guifont=Monaco:h12
-set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-
-if has("gui_running")
-    " MacVim in fullscreen mode rocks
-    " set fullscreen
-
-    " Colorscheme
-    set t_Co=256
-    " colorscheme mustang
-    set background=dark
-    colorscheme solarized
-
-    " Let's not go fullscreen for a while
-    set lines=55
-    set columns=120
-
-    " remove toolbar
-    set guioptions-=T
-    " remove left scrollbar (in NERDTree)
-    set guioptions-=L
-    " remove right scrollbar
-    set guioptions-=r
-    " switch tabs with Command-j
-    map <D-j> gT
-    map <D-k> gt
-endif
-
-if has("gui_macvim")
-    macmenu Tools.Make key=<nop>
-endif
-
-map <leader>j gT
-map <leader>k gt
-
-" Convert tabs to spaces
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-" Showing line numbers and length
-set number
-set relativenumber  " show relative line numbers
-set tw=80   " width of document (used by gd)
-set wrap    " automatically wrap on load
-" set fo+=t   " automatically wrap text when typing
-set fo-=t   " don't automatically wrap text when typing
-
-" Don't create swap files
-set noswapfile
-
-" add a cursorline
-set cursorline
-hi CursorLine term=bold cterm=bold guibg=Grey20
-
-" Show 80 char column
-" set colorcolumn=80
-" highlight ColorColumn ctermbg=233
-
 " Highlight searches
 set incsearch
 
-" Spelling toggles
-nmap <leader>ss :set spell!<CR>
+" Keep previous search highlighted
+set hlsearch
 
-" easier formatting of paragraphs
-" Select (in visual mode)
-vmap Q gq
-nmap Q gqap
-
-" Quicksave command
-noremap <leader>s :update<CR>
-vnoremap <leader>s <C-C>:update<CR>
-inoremap <leader>s <C-O>:update<CR>
-
-" Easier swap two characters
-nnoremap <silent> gc xph
-
-" Gundo mappings
-nnoremap  <leader>h :GundoToggle<CR>
-
-" Rename current file
-map <leader>rn :call RenameFile()<cr>
+" Toggle search highlighting
+nnoremap <leader>h :set hlsearch!<CR>
 
 " Select word with space
-map <space> viw
-
-" easier moving of code blocks
-" Try to go into visual mode (v), thenselect several lines of code here and
-" then press ``>`` several times.
-vnoremap < <gv
-vnoremap > >gv
-
-" Easier comment/uncomment
-vmap <leader># :s!^!# !<CR>
-vmap <leader>u :s!^# !!<CR>
-
-" select all
-map <leader>a ggVG
-
-" Better copy and paste
-map <leader>c "+y
-nmap <leader>v :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-imap <leader>v <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+" map <space> viw
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
-" Every unnecessary keystroke that can be saved is good for your health :)
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" Quick quit command
-noremap <Leader>e :quit<CR>  " Quit current window
-noremap <Leader>E :qa!<CR>   " Quit all windows
+" Better navigating through omnicomplete option list
+" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+" function! OmniPopup(action)
+"     if pumvisible()
+"         if a:action == 'j'
+"             return "\<C-N>"
+"         elseif a:action == 'k'
+"             return "\<C-P>"
+"         endif
+"     endif
+"     return a:action
+" endfunction
 
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
+" Remap j,k to select options in popup lists
+"inoremap <silent>j <C-R>=OmniPopup('j')<CR>
+"inoremap <silent>k <C-R>=OmniPopup('k')<CR>
+inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 
-" Associate proper file extensions with proper filetypes
-autocmd! BufRead,BufNewFile *.pp set filetype=puppet
-au FileType puppet setlocal tabstop=8 expandtab shiftwidth=2 softtabstop=2
 
-" This beauty remembers where you were the last time you edited the file, and
-" returns to the same position.
-" au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLOR
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=dark
 
-" Open a new tab
-map <leader>t :tabnew<CR>
+" Toggle dark/light backgrounds
+map <F5> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+" colorscheme iceberg
+" colorscheme jellybeans
+" colorscheme Tomorrow-Night-Eighties
+" colorscheme solarized
 
-" Switch tabs shortcut
-map <leader><space> gt
+" badwolf-specific tweaks
+" colorscheme badwolf
+" Make the gutters darker than the background.
+" let g:badwolf_darkgutter = 1
 
-" Easier redo
-map <leader>r <C-r>
+"colorscheme mustang
+"colorscheme badwolf
+colorscheme xoria256
 
-" Execute python file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+" Highlight the cursorline
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
 
-" Strip all whitespace in the current buffer
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
-" Enable/Disable relative line numbers
-nnoremap <C-n> :call NumberToggle()<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+"set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ctrlp
-"
-" Make ctrlp's location sync with nerdtree window
-let g:ctrlp_dont_split = 'nerdtree'
 
-" Set ctrlp's working path
-let g:ctrlp_working_path_mode = 'ra'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SUPERTAB
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabNoCompleteAfter = ['^', '\s', ',', '(', ')', '[', ']', '{', '}', '<', '>', '''', '"']
 
-" Use tab to open new files in split windows
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CTRLP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_match_window = 'bottom,order:ttb'          " order matching files from top to bottom
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'  " user silver searcher for wicked speed
+let g:ctrlp_max_height = 20
+let g:ctrlp_mruf_relative = 1
+let g:ctrlp_working_path_mode = 'w'
+command! CtrlPLine call ctrlp#init(ctrlp#line#id())
+let g:ctrlp_dont_split = 'nerdtree'                    " Make ctrlp's location sync with nerdtree window
+let g:ctrlp_working_path_mode = 'ra'                   " Set ctrlp's working path
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>', '<c-i>']
-  \ }
-
-let g:ctrlp_max_height = 10
+\ }
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
 set wildignore+=*.pyc
 set wildignore+=*.so
 set wildignore+=*.zip
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline
-"
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
-set laststatus=2
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python-mode
-"
-" map <Leader>g :call RopeGotoDefinition()<CR>
-" let ropevim_enable_shortcuts = 1
-" let g:pymode_rope_extended_complete = 1
-" let g:pymode_rope_goto_def_newwin = "vnew"
-" let g:pymode_syntax = 1
-" let g:pymode_syntax_builtin_objs = 0
-" let g:pymode_syntax_builtin_funcs = 0
-" let g:pymode_folding = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BUFFERGATOR
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use the right side of the screen
+let g:buffergator_viewport_split_policy = 'R'
 
-" Enabled breakpoint plugin
-let g:pymode_breakpoint = 0
-map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PUPPET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" http://www.gdb.me/puppet/using-vim-to-edit-puppet.html
+" tell vim to look upwards in the directory hierarchy for a tags file until it finds one
+" Generate tags so we can jump to function/class/method definitions: ctags -R
+set tags=./tags;
 
-" Disable pylint checking every save
-let g:pymode_lint_write = 0
-" Map <leader>p to PyLink syntax check
-map <leader>p :PyLint<CR>
-" Renam find occurences
-map <leader>f <C-c>f<CR>
+" remap leader-b to "Jump to Definition" like PyCharm
+nnoremap <silent> <leader>b <c-]>
+ " remap leader-[ to "Back to Previous Definition" like PyCharm
+nnoremap <silent> <leader>[ <c-t>
 
-" Remap j,k to select options in popup lists
-inoremap <silent>j <C-R>=OmniPopup('j')<CR>
-inoremap <silent>k <C-R>=OmniPopup('k')<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TMUX
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use vim motion keys to navigate tmux panes
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
-" Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GitGutter
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Lower the amount of time it takes to update the gutter
+set updatetime=400
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar
-"
-" To install requirements:
-" brew install ctags-exuberant
+" Fix the gutter colors
+hi clear SignColumn
+call gitgutter#highlight#define_highlights()
 
-" Map our Tagbar toggle
-map <leader>T :TagbarToggle<CR>
-
-" Toggle both NERDTree and Tagbar with <leader>\
-nnoremap <leader>m :call ToggleNERDTreeAndTagbar()<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Jedi
-
-let g:jedi#documentation_command = "K"
-let g:jedi#auto_initialization = 1
-let g:jedi#popup_select_first = 1
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#usages_command= "<leader>N"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Filetypes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+autocmd BufNewFile,BufRead Berksfile set filetype=ruby
+autocmd BufNewFile,BufRead *.template set filetype=json
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
@@ -389,68 +312,13 @@ let g:NERDTreeWinSize = 40
 " Ignore *.pyc files
 let NERDTreeIgnore = ['\.pyc$']
 
+" Show hidden files
+let NERDTreeShowHidden = 1
+
 " Toggle NERDTree with Leader-n
 map <leader>n :NERDTreeToggle<CR>
 
 " Close NERDTree if its the only buffer left
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fugitive
-"
-" To make current branch appear in powerline, run:
-" :PowerlineClearCache
-" then restart vim.
 
-map <leader>S :Gstatus<CR>
-
-" Write COMMIT_EDITMSG and push to current branch
-function! PushToCurrentBranch()
-  exe ":Gwrite"
-  let branch = fugitive#statusline()
-  let branch = substitute(branch, '\c\v\[?GIT\(([a-z0-9\-_\./:]+)\)\]?', $BRANCH.' \1', 'g')
-  exe ":Git push origin" . branch
-endfunction
-
-" Map gwp keys to call the function
-nnoremap gwp :call PushToCurrentBranch()<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SuperTab
-"
-" cd ~/.vim && git clone https://github.com/ervandew/supertab.git
-
-let g:SuperTabNoCompleteAfter = ['^', '\s', ',', '(', ')', '[', ']', '{', '}', '<', '>', '''', '"']
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Snipmate
-let g:snips_trigger_key = '<c-n>'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntastic
-let g:syntastic_always_populate_loc_list = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-gitgutter
-
-" Fix gutter coloring issue
-highlight clear SignColumn
-
-" remove that annoying scratch window in
-autocmd FileType python setlocal completeopt-=preview
-
-" Use vim motion keys to navigate tmux panes
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-
-" http://www.gdb.me/puppet/using-vim-to-edit-puppet.html
-" tell vim to look upwards in the directory hierarchy for a tags file until it finds one
-" Generate tags so we can jump to function/class/method definitions: ctags -R
-set tags=./tags;
-" remap leader-b to "Jump to Definition" like PyCharm
-nnoremap <silent> <leader>b <c-]>
- " remap leader-[ to "Back to Previous Definition" like PyCharm
-nnoremap <silent> <leader>[ <c-t>
