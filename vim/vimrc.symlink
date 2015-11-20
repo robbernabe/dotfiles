@@ -80,6 +80,13 @@ function! NumberToggle()
   endif
 endfunc
 
+" automatically set paste mode when pasting into vim
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
 " End Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -115,6 +122,11 @@ filetype plugin indent on
 " change the mapleader from \ to ,
 let mapleader=","
 
+" automatically set paste mode when pasting into vim
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
 " show problematic whitespace
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
@@ -125,9 +137,10 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Mustang via https://github.com/croaker/mustang-vim
-" colorscheme mustang
 colorscheme mustang
 set t_Co=256
+" set background=dark
+" colorscheme solarized
 
 " Setup our default font
 " set guifont=Monaco:h12
@@ -136,6 +149,12 @@ set guifont=Bitstream\ Vera\ Sans\ Mono:h12
 if has("gui_running")
     " MacVim in fullscreen mode rocks
     " set fullscreen
+
+    " Colorscheme
+    set t_Co=256
+    " colorscheme mustang
+    set background=dark
+    colorscheme solarized
 
     " Let's not go fullscreen for a while
     set lines=55
@@ -168,8 +187,8 @@ set expandtab
 " Showing line numbers and length
 set number
 set relativenumber  " show relative line numbers
-" set tw=80   " width of document (used by gd)
-" set wrap    " automatically wrap on load
+set tw=80   " width of document (used by gd)
+set wrap    " automatically wrap on load
 " set fo+=t   " automatically wrap text when typing
 set fo-=t   " don't automatically wrap text when typing
 
@@ -345,6 +364,7 @@ nnoremap <leader>m :call ToggleNERDTreeAndTagbar()<CR>
 
 let g:jedi#documentation_command = "K"
 let g:jedi#auto_initialization = 1
+let g:jedi#popup_select_first = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#usages_command= "<leader>N"
@@ -400,7 +420,15 @@ nnoremap gwp :call PushToCurrentBranch()<CR>
 "
 " cd ~/.vim && git clone https://github.com/ervandew/supertab.git
 
-" let g:SuperTabNoCompleteAfter = ['^', '\s', ',', '(', ')', '[', ']', '{', '}', '<', '>', '''', '"']
+let g:SuperTabNoCompleteAfter = ['^', '\s', ',', '(', ')', '[', ']', '{', '}', '<', '>', '''', '"']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Snipmate
+let g:snips_trigger_key = '<c-n>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntastic
+let g:syntastic_always_populate_loc_list = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
@@ -408,10 +436,8 @@ nnoremap gwp :call PushToCurrentBranch()<CR>
 " Fix gutter coloring issue
 highlight clear SignColumn
 
-" remove that annoying scratch window
-set completeopt+=preview
-" for some reason the above isn't working when in .vimrc, but works manually
-autocmd FileType * setlocal completeopt-=preview
+" remove that annoying scratch window in
+autocmd FileType python setlocal completeopt-=preview
 
 " Use vim motion keys to navigate tmux panes
 let g:tmux_navigator_no_mappings = 1

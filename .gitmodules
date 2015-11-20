@@ -1,51 +1,9 @@
-[submodule "vim/vim.dir/bundle/ctrlp.vim"]
-	path = vim/vim.dir/bundle/ctrlp.vim
-	url = git@github.com:kien/ctrlp.vim.git
-[submodule "vim/vim.dir/bundle/fugitive.vim"]
-	path = vim/vim.dir/bundle/fugitive.vim
-	url = git@github.com:tpope/vim-fugitive.git
-[submodule "vim/vim.dir/bundle/gundo.vim"]
-	path = vim/vim.dir/bundle/gundo.vim
-	url = git@github.com:sjl/gundo.vim.git
-[submodule "vim/vim.dir/bundle/markdown.vim"]
-	path = vim/vim.dir/bundle/markdown.vim
-	url = git@github.com:tpope/vim-markdown.git
-[submodule "vim/vim.dir/bundle/nerdtree.vim"]
-	path = vim/vim.dir/bundle/nerdtree.vim
-	url = git@github.com:scrooloose/nerdtree.git
 [submodule "vim/vim.dir/bundle/numbers.vim"]
 	path = vim/vim.dir/bundle/numbers.vim
 	url = git@github.com:myusuf3/numbers.vim.git
-[submodule "vim/vim.dir/bundle/powerline.vim"]
-	path = vim/vim.dir/bundle/powerline.vim
-	url = git@github.com:Lokaltog/vim-powerline.git
-[submodule "vim/vim.dir/bundle/python-mode.vim"]
-	path = vim/vim.dir/bundle/python-mode.vim
-	url = git@github.com:klen/python-mode.git
-[submodule "vim/vim.dir/bundle/surround.vim"]
-	path = vim/vim.dir/bundle/surround.vim
-	url = git@github.com:tpope/vim-surround.git
-[submodule "vim/vim.dir/bundle/tagbar.vim"]
-	path = vim/vim.dir/bundle/tagbar.vim
-	url = git@github.com:majutsushi/tagbar.git
-[submodule "vim/vim.dir/bundle/gitgutter.vim"]
-	path = vim/vim.dir/bundle/gitgutter.vim
-	url = git@github.com:airblade/vim-gitgutter.git
-[submodule "vim/vim.dir/bundle/puppet.vim"]
-	path = vim/vim.dir/bundle/puppet.vim
-	url = git://github.com/rodjek/vim-puppet.git
-[submodule "vim/vim.dir/bundle/syntastic.vim"]
-	path = vim/vim.dir/bundle/syntastic.vim
-	url = git://github.com/scrooloose/syntastic.git
 [submodule "vim/vim.dir/bundle/jedi.vim"]
 	path = vim/vim.dir/bundle/jedi.vim
 	url = git@github.com:davidhalter/jedi-vim.git
-[submodule "vim/vim.dir/bundle/jedi-vim"]
-	path = vim/vim.dir/bundle/jedi-vim
-	url = git@github.com:davidhalter/jedi-vim.git
-[submodule "vim/vim.dir/bundle/vim-tmux-navigator"]
-	path = vim/vim.dir/bundle/vim-tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator.git
-[submodule "vim/vim.dir/bundle/snipmate.vim"]
-	path = vim/vim.dir/bundle/snipmate.vim
-	url = git://github.com/msanders/snipmate.vim.git
+[submodule "vim-nerdtree-tabs"]
+	path = vim-nerdtree-tabs
+	url = git@github.com:jistr/vim-nerdtree-tabs.git
