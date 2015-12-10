@@ -85,7 +85,7 @@ set-option -g message-attr dim
 # -----------------------
 # Status Bar (thanks to https://github.com/pwelch)
 # -----------------------
-#set -g status-utf8 on
+set -g status-utf8 on
 #set -g status-interval 5
 #set -g status-justify centre
 #set -g status-left-length 40
