@@ -10,6 +10,10 @@ Entire directories can also be symlinked (for example the contents of `.vim/`
 which contains all my vim plugins). This is accomplished by naming the
 directory `[whatever].dir`.
 
+## Prerequisites
+
+- [Vundle](https://github.com/VundleVim/Vundle.vim)
+
 ## Installation
 
 The purpose of this project was to be able to easily install my dotfiles on any
@@ -19,25 +23,3 @@ things a bit. Just run:
 `curl https://raw.github.com/robbernabe/dotfiles/master/bootstrap | bash`
 
 ...and you should be good to go assuming you have git installed.
-
-## Updating
-
-There are several git submodules included in this configuration. On a new
-installation these submodules need to be initialized and updated.
-
-    $ cd ~/dotfiles
-    $ git submodule update --init --recursive
-
-It is also possible to use `git pull` to update the submodules.
-
-    $ cd ~/dotfiles
-    $ git submodule foreach git pull origin master
-
-## Adding new submodules
-
-You'll need to be in the root of your repo. For example, here's how I added the
-jedi-vim bundle to my vim configuration:
-
-    git submodule add git@github.com:davidhalter/jedi-vim.git vim/vim.dir/bundle/jedi-vim
-
-Don't forget to commit your changes!
