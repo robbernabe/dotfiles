@@ -194,6 +194,10 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
+" jump to the top if its a git commit message
+autocmd BufReadPost COMMIT_EDITMSG
+  \ exe "normal! gg"
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
