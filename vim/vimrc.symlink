@@ -29,6 +29,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'rking/ag.vim.git'
+Plugin 't9md/vim-chef'
 
 " Vundle colorschemes
 Plugin 'sjl/badwolf'
@@ -70,6 +71,13 @@ function! s:CloseIfOnlyNerdTreeLeft()
       endif
     endif
   endif
+endfunction
+
+function! s:SetupChef()
+  " `jump into` to match that of ctags
+  nnoremap <buffer> <silent> <C-[>      :<C-u>ChefFindAny<CR>
+  " `jump back` to match that of ctags
+  nnoremap <buffer> <silent> <C-t> <C-o>
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -312,6 +320,9 @@ autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead Berksfile set filetype=ruby
 autocmd BufNewFile,BufRead *.template set filetype=json
+
+" vim-chef
+au BufNewFile,BufRead */*cookbooks/*  call s:SetupChef()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
