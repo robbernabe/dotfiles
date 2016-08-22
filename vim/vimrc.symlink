@@ -29,7 +29,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'rking/ag.vim.git'
-Plugin 't9md/vim-chef'
+Plugin 'easymotion/vim-easymotion'
 
 " Vundle colorschemes
 Plugin 'sjl/badwolf'
@@ -71,13 +71,6 @@ function! s:CloseIfOnlyNerdTreeLeft()
       endif
     endif
   endif
-endfunction
-
-function! s:SetupChef()
-  " `jump into` to match that of ctags
-  nnoremap <buffer> <silent> <C-[>      :<C-u>ChefFindAny<CR>
-  " `jump back` to match that of ctags
-  nnoremap <buffer> <silent> <C-t> <C-o>
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,7 +202,7 @@ set background=dark
 
 " Toggle dark/light backgrounds
 map <F5> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-" colorscheme iceberg
+colorscheme iceberg
 " colorscheme jellybeans
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme mustang
@@ -219,17 +212,17 @@ map <F5> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 """"""""""""""""""""""""""""""""
 " Solarized Options
 """"""""""""""""""""""""""""""""
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-let g:solarized_termcolors = 256
-let g:solarized_termtrans = 1
-colorscheme solarized
+" let g:solarized_visibility = "high"
+" let g:solarized_contrast = "high"
+" let g:solarized_termcolors = 256
+" let g:solarized_termtrans = 1
+" colorscheme solarized
 
 " Below needs to come after the colorscheme command
-highlight CursorLine ctermbg=Black
-highlight CursorLineNr term=bold ctermfg=LightGreen
-highlight LineNr ctermfg=Green ctermbg=Black
-highlight SignColumn ctermbg=Black ctermfg=Green
+" highlight CursorLine ctermbg=Black
+" highlight CursorLineNr term=bold ctermfg=LightGreen
+" highlight LineNr ctermfg=Green ctermbg=Black
+" highlight SignColumn ctermbg=Black ctermfg=Green
 
 """"""""""""""""""""""""""""""""
 " Badwolf Options
@@ -325,9 +318,6 @@ autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead Berksfile set filetype=ruby
 autocmd BufNewFile,BufRead *.template set filetype=json
 
-" vim-chef
-au BufNewFile,BufRead */*cookbooks/*  call s:SetupChef()
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 "
@@ -340,6 +330,9 @@ if has("gui_running")
 
   " Enable NERDTree window on all tabs
   " autocmd BufEnter * NERDTreeMirror
+
+  " Remove right scrollbar
+  set guioptions-=r
 endif
 
 " Set the side bar size
