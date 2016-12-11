@@ -13,8 +13,6 @@ Plugin 'gmarik/Vundle.vim'
 " Vundle Plugins
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails'
@@ -22,14 +20,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'rodjek/vim-puppet'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Townk/vim-autoclose'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'rking/ag.vim.git'
-Plugin 'easymotion/vim-easymotion'
 
 " Vundle colorschemes
 Plugin 'sjl/badwolf'
@@ -83,6 +79,9 @@ set switchbuf=useopen
 set numberwidth=1
 set encoding=utf-8
 set mouse=a
+
+" Fix for slow scrolling
+set lazyredraw
 
 " Convert tabs to spaces
 set softtabstop=4
@@ -278,19 +277,6 @@ set wildignore+=*.zip
 let g:buffergator_viewport_split_policy = 'R'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PUPPET
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" http://www.gdb.me/puppet/using-vim-to-edit-puppet.html
-" tell vim to look upwards in the directory hierarchy for a tags file until it finds one
-" Generate tags so we can jump to function/class/method definitions: ctags -R
-set tags=./tags;
-
-" remap leader-b to "Jump to Definition" like PyCharm
-nnoremap <silent> <leader>b <c-]>
- " remap leader-[ to "Back to Previous Definition" like PyCharm
-nnoremap <silent> <leader>[ <c-t>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TMUX
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use vim motion keys to navigate tmux panes
@@ -349,5 +335,3 @@ map <leader>n :NERDTreeToggle<CR>
 
 " Close NERDTree if its the only buffer left
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-
-
