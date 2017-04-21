@@ -27,6 +27,8 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'rking/ag.vim.git'
 Plugin 'w0rp/ale'
+Plugin 'benmills/vimux'
+Plugin 't9md/vim-chef'
 
 " Vundle colorschemes
 Plugin 'sjl/badwolf'
@@ -342,3 +344,17 @@ map <leader>n :NERDTreeToggle<CR>
 
 " Close NERDTree if its the only buffer left
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimux
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-chef
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au BufNewFile,BufRead */*cookbooks/* call s:SetupChef()
+nnoremap <silent> <leader>R :ChefFindAny<CR>
