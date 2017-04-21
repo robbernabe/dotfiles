@@ -26,6 +26,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'rking/ag.vim.git'
+Plugin 'w0rp/ale'
 
 " Vundle colorschemes
 Plugin 'sjl/badwolf'
@@ -36,6 +37,8 @@ Plugin 'gilgigilgil/anderson.vim.git'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'croaker/mustang-vim.git'
 Plugin 'vim-scripts/xoria256.vim.git'
+Plugin 'dracula/vim'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -201,7 +204,8 @@ set background=dark
 
 " Toggle dark/light backgrounds
 map <F5> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-colorscheme iceberg
+colorscheme gruvbox
+" colorscheme iceberg
 " colorscheme jellybeans
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme mustang
@@ -295,6 +299,9 @@ set updatetime=400
 " Fix the gutter colors
 hi clear SignColumn
 call gitgutter#highlight#define_highlights()
+
+" Sane revert hunk
+nmap <Leader>hr <Plug>GitGutterUndoHunk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetypes
