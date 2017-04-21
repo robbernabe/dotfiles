@@ -74,6 +74,14 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
+" For vim-chef
+function! s:SetupChef()
+  " Jump into to match same as ctags
+  nnoremap <buffer> <silent> <C-[>      :<C-u>ChefFindAny<CR>
+  " Jump back to match same as ctags
+  nnoremap <buffer> <silent> <C-t> <C-o>
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
