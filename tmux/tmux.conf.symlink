@@ -97,7 +97,10 @@ bind r source-file ~/.tmux.conf
 # provide access to the clipboard for pbpaste, pbcopy
 set-option -g default-shell $SHELL
 set-option -g default-command "reattach-to-user-namespace -l ${SHELL}"
-set-window-option -g automatic-rename on
+
+# don't rename windows automatically
+set-option -g allow-rename off
+# set-window-option -g automatic-rename on
 
 # setup 'v' to begin selection as in Vim
 bind-key -t vi-copy v begin-selection
