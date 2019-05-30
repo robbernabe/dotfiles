@@ -61,8 +61,8 @@ values."
          version-control-diff-side 'left
          version-control-diff-tool 'git-gutter)
      docker
-     django
-     python
+     ;; django
+     ;; python
      (ruby :variables
            ruby-version-manager 'rbenv)
      themes-megapack
