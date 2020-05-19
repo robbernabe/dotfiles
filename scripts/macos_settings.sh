@@ -234,6 +234,16 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 # Put display to sleep after 10 minutes
 /usr/bin/sudo /usr/bin/pmset -a displaysleep 10
 
+# Disable AutoBoot (opening lid will not power on MacBook)
+# %00 = off
+# %01 = on
+/usr/bin/sudo nvram AutoBoot=%00
+
+# Enable Nostalgic Startup Chime
+# %00 = off
+# %01 = on
+/usr/bin/sudo nvram BootAudio=%01
+
 ###############################################################################
 # Mouse/Trackpad
 ###############################################################################
