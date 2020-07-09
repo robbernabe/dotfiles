@@ -243,6 +243,7 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 # %00 = off
 # %01 = on
 /usr/bin/sudo nvram BootAudio=%01
+/usr/bin/sudo nvram StartupMute=%00
 
 ###############################################################################
 # Mouse/Trackpad
