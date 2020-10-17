@@ -145,6 +145,7 @@ set wildmode=full
 set wildmenu
 
 " copy to system clipboard
+set clipboard=unnamed
 map <leader>c "+y
 
 " show problematic whitespace
@@ -308,7 +309,7 @@ set updatetime=400
 
 " Fix the gutter colors
 hi clear SignColumn
-call gitgutter#highlight#define_highlights()
+" call gitgutter#highlight#define_highlights()
 
 " Sane revert hunk
 nmap <Leader>hr <Plug>GitGutterUndoHunk
