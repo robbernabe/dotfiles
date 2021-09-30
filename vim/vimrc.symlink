@@ -41,6 +41,7 @@ Plugin 'croaker/mustang-vim.git'
 Plugin 'vim-scripts/xoria256.vim.git'
 Plugin 'dracula/vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'arcticicestudio/nord-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -215,6 +216,7 @@ set background=dark
 
 " Toggle dark/light backgrounds
 map <F5> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+" colorscheme nord
 colorscheme gruvbox
 " colorscheme iceberg
 " colorscheme jellybeans
