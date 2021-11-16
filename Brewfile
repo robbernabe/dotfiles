@@ -102,6 +102,7 @@ brew "ssh-copy-id", link: true
 brew "swaks"
 brew "swig"
 brew "switchaudio-osx"
+brew "syncthing"
 brew "sysdig"
 brew "telnet"
 brew "terraform_landscape"
